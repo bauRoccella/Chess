@@ -3,7 +3,21 @@ package org.example.model.pieces;
 import org.example.model.Color;
 
 public class Bishop extends Piece{
-    public Bishop(int posX, int posY, Color color) {
-        super(posX, posY, color);
+    public Bishop(Color color, int x, int y) {
+        super(color, x, y);
+    }
+
+    public boolean isValidMove(int x1, int y1) {
+        int x0 = this.getPosition().getX();
+        int y0 = this.getPosition().getY();
+
+        if (x1 < 0 || x1 > 7 || y1 < 0 || y1 > 7) {
+            return false;
+        }
+
+        int xDiff = Math.abs(x1 - x0);
+        int yDiff = Math.abs(y1 - y0);
+
+        return xDiff == yDiff;
     }
 }
